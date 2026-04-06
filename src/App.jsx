@@ -1,51 +1,36 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { ErrorBoundary } from 'react-error-boundary'
 import './App.css'
+import Button from './components/Button'
+import Card from './components/Card'
+import List from './components/List'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const DEFAULT_QUOTES = [
+    "I'd buy that for a dollar!",
+    "For me it was a Tuesday.",
+    "Search your feelings, you know it to be true.",
+    "How's that for a slice of fried gold?"
+  ];
+  const [quotes, setQuotes] = useState(DEFAULT_QUOTES);
+  const clearQuotes = () => {
+    setQuotes([]);
+  }
+  const resetQuotes = () => {
+    setQuotes(DEFAULT_QUOTES);
+  }
 
   return (
     <>
-	<List listItems={[1,2,3,4]} />
 	<Card>
-		<Button />
-		<br />
-		<Button call_to_action='Hats!' />
+	  <List listItems={quotes} />
+	</Card>
+	<Card>
+		<Button call_to_action='Clear!' action={clearQuotes} />
+		<Button call_to_action='Reset!' action={resetQuotes} />
 	</Card>
     </>
   )
-}
-
-function Button({ call_to_action = "Click Me!" }) {
-	return (
-		<button className="">
-			{ call_to_action }
-		</button>
-	)
-}
-
-function Card({ children }) {
-	return (
-		<>
-			<div className="">
-				{ children }
-			</div>
-		</>
-	)
-}
-
-function List({ listItems = [] }) {
-	const items = listItems.map(item => <li>{item}</li>);
-	return (
-		<>
-			<ul>
-				{items}
-			</ul>
-		</>
-	)
 }
 
 export default App
