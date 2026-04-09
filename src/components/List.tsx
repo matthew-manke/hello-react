@@ -1,4 +1,8 @@
-function List({ listItems = [] }) {
+type ListProps = {
+  listItems: string[];
+};
+
+function List({ listItems = [] }: ListProps) {
   if (listItems.length === 0) {
     return <div>No quotes yet?</div>;
   }

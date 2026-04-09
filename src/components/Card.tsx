@@ -1,6 +1,10 @@
 import Card from '@mui/material/Card';
 
-function CardInternal({ children }) {
+type CardProps = {
+  children: React.ReactNode;
+}
+
+function CardInternal({ children }: CardProps) {
   return <Card variant="outlined">{children}</Card>;
 }
 

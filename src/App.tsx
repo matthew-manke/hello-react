@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './App.css'
+
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+
 import Button from './components/Button'
 import Card from './components/Card'
-import Grid from '@mui/material/Grid'
 import List from './components/List'
 import QuoteInput from './components/QuoteInput'
 
@@ -39,7 +41,7 @@ function App() {
         </Grid>
         <Grid size={{ xs: 12, md: 4, lg: 6 }}>
           <Card>
-            <QuoteInput className="center" quote={quote} updater={setQuote} />
+            <QuoteInput quote={quote} setQuote={setQuote} />
             <Button call_to_action='Add 1 quote' action={addQuote} />
             <Button call_to_action='Clear!' action={clearQuotes} />
             <Button call_to_action='Reset!' action={resetQuotes} />
