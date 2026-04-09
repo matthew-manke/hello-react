@@ -1,15 +1,7 @@
-import { Children } from 'react';
+import Card from '@mui/material/Card';
 
-function Card({ children }) {
-        return (
-                <>
-                        <div className="hello-card">
-				{ Children.map(children, child => 
-					<div className="hello-card-child">{child}</div>
-				)}
-                        </div>
-                </>
-        )
+function CardInternal({ children }) {
+  return <Card variant="outlined">{children}</Card>;
 }
 
-export default Card
+export default CardInternal
