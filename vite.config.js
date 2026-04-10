@@ -11,5 +11,6 @@ export default defineConfig({
     tailwindcss()
   ]
   //For local development with HMR the base can't be defined
-  ,base: '/hello-react/'
+  //,base: '/hello-react/'
+  ,base: ""
 })
