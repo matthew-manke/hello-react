@@ -52,18 +52,16 @@ function App() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, md: 8, lg: 6 }}>
-          <Card>
-            <SearchInput onChange={handleSearchChange} />
-            <List listItems={filteredQuotes} />
-          </Card>
-        </Grid>
-        <Grid size={{ xs: 12, md: 4, lg: 6 }}>
+        <Grid size={{ xs: 12, md: 12, lg: 12 }}>
           <Card>
             <QuoteInput quote={quote} setQuote={setQuote} />
             <Button call_to_action='Add a quote' action={addQuote} />
             <Button call_to_action='Clear!' action={clearQuotes} />
             <Button call_to_action='Reset!' action={resetQuotes} />
+          </Card>
+          <Card>
+            <SearchInput onChange={handleSearchChange} />
+            <List listItems={filteredQuotes} />
           </Card>
         </Grid>
       </Grid>

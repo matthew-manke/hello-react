@@ -9,6 +9,7 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss()
-  ],
-  base: '/hello-react/'
+  ]
+  //For local development with HMR the base can't be defined
+  ,base: '/hello-react/'
 })
