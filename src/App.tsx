@@ -9,6 +9,7 @@ import Card from './components/Card'
 import List from './components/List'
 import QuoteInput from './components/QuoteInput'
 import SearchInput from './components/SearchInput'
+import WhatIsThis from './components/WhatIsThis'
 
 function App() {
   const DEFAULT_QUOTES = [
@@ -52,6 +53,11 @@ function App() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
+        <Grid size={{ xs: 12, md: 12, lg: 12 }}>
+          <Card>
+            <WhatIsThis />
+          </Card>
+        </Grid>
         <Grid size={{ xs: 12, md: 12, lg: 12 }}>
           <Card>
             <QuoteInput quote={quote} setQuote={setQuote} />
