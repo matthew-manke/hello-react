@@ -10,7 +10,8 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss()
   ]
-  //For local development with HMR the base can't be defined
-  //,base: '/hello-react/'
+  // For local development with HMR the base can't be defined with the repo name,
+  // this base: "" will work for both.
+  // DISCLAIMER: I changed this after the initial deployment, it may be necessary for the initial deploy.
   ,base: ""
 })
