@@ -11,13 +11,14 @@ type SquareProps = {
 function Square({ value, onSquareClick }: SquareProps) {
 
   return ( 
-    <Grid size={{ xs: 4, md: 4, lg: 4 }}>
-      <button 
-        className="square"
+    <Grid className="" size={{ xs: 4, md: 4, lg: 4 }}>
+      <Button variant="contained"
+        className="square m-1"
         onClick={onSquareClick}
+        color="secondary"
       >
         {value}
-      </button>
+      </Button>
     </Grid>
   );
 }
@@ -87,6 +88,8 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
   let status;
   if (winner) {
     status = "Winner: " + winner;
+  } else if (squares.every(square => square !== null)) {
+    status = "No winner, draw!"
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }

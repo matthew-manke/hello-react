@@ -9,11 +9,12 @@ import Game from './pages/Game'
 
 const router = createBrowserRouter([
   { // default route
+    path: "/hello-react",
     index: true,
     Component: Index,
   },
   {
-    path: "/game",
+    path: "/hello-react/game",
     Component: Game
   }
 ]);

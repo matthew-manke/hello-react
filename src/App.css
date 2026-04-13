@@ -22,15 +22,15 @@
 }
 
 .board {
-  max-width: 160px;
+  max-width: 220px;
+  max-height: 220px;
+
   @apply p-1;
 }
 
 .square {
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: white;
-  /*margin: 0.25rem;*/
+  width: 2rem;
+  height: 2rem;
 }
 
 .counter {
