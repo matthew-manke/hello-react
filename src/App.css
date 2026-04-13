@@ -21,6 +21,18 @@
   @apply flex-2 text-sm text-gray-600;
 }
 
+.board {
+  max-width: 160px;
+  @apply p-1;
+}
+
+.square {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: white;
+  /*margin: 0.25rem;*/
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
