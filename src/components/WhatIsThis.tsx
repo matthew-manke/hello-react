@@ -21,6 +21,7 @@ export default function WhatIsThis() {
           </span>
         </ListItem>
         <ListItem>The app initially used React with .jsx files and was later migrated to TypeScript, with components now written in .tsx.</ListItem>
+        <ListItem>This app uses React router to present multiple pages.</ListItem>
       </List>
     </>
   )

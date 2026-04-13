@@ -1,3 +1,4 @@
+import '../App.css'
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -16,6 +17,7 @@ function Square({ value, onSquareClick }: SquareProps) {
         className="square m-1"
         onClick={onSquareClick}
         color="secondary"
+        sx={{height: '45px'}}
       >
         {value}
       </Button>

@@ -1,3 +1,4 @@
+import '../App.css'
 import { Link } from 'react-router';
 import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
@@ -10,6 +11,7 @@ export default function Header() {
       <ButtonGroup>
         <Button><Link to='/hello-react'>Home</Link></Button>
         <Button><Link to='/hello-react/game'>Game</Link></Button>
+        <Button><Link to='/hello-react/quotes'>Quotes</Link></Button>
       </ButtonGroup>
     </nav>
     </>

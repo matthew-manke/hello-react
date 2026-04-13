@@ -1,8 +1,8 @@
-import App from '../App';
+import WhatIsThis from '../components/WhatIsThis';
 export default function Index() {
   return (
     <>
-    <App />
+    <WhatIsThis />
     </>
   )
 }
