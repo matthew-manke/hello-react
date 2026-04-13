@@ -1,26 +1,22 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router";
 import './index.css'
-//import App from './App.js'
+import App from './App.js'
+import Header from './components/Header';
 import Index from './pages/Index'
 import Game from './pages/Game'
 
-const router = createBrowserRouter([
-  { // default route
-    path: "/hello-react",
-    index: true,
-    Component: Index,
-  },
-  {
-    path: "/hello-react/game",
-    Component: Game
-  }
-]);
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="hello-react" element={<Index />} />
+        <Route path="hello-react/game" element={<Game />} />
+      </Routes>
+    </BrowserRouter>
   </StrictMode>
 )
