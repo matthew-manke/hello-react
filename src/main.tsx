@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, Link } from "react-router";
+import { HashRouter, Routes, Route, Link } from "react-router";
 import './index.css'
 import Header from './components/Header';
 import Index from './pages/Index'
@@ -10,13 +10,13 @@ import Quotes from './pages/Quotes';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Header />
       <Routes>
-        <Route path="hello-react" element={<Index />} />
-        <Route path="hello-react/game" element={<Game />} />
-        <Route path="hello-react/quotes" element={<Quotes />} />
+        <Route path="/" element={<Index />} />
+        <Route path="/game" element={<Game />} />
+        <Route path="/quotes" element={<Quotes />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>
 )

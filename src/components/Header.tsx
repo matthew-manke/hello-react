@@ -9,9 +9,9 @@ export default function Header() {
     <h1>Hello, React!</h1>
     <nav className="m-4">
       <ButtonGroup>
-        <Button><Link to='/hello-react'>Home</Link></Button>
-        <Button><Link to='/hello-react/game'>Game</Link></Button>
-        <Button><Link to='/hello-react/quotes'>Quotes</Link></Button>
+        <Button><Link to='/'>Home</Link></Button>
+        <Button><Link to='/game'>Game</Link></Button>
+        <Button><Link to='/quotes'>Quotes</Link></Button>
       </ButtonGroup>
     </nav>
     </>
