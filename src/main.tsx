@@ -6,17 +6,17 @@ import Header from './components/Header';
 import Index from './pages/Index'
 import Game from './pages/Game'
 import Quotes from './pages/Quotes';
-
+import Container from '@mui/material/Container';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <HashRouter>
-      <Header />
+  <HashRouter>
+    <Header />
+    <Container sx={{ mt: 4 }}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/game" element={<Game />} />
         <Route path="/quotes" element={<Quotes />} />
       </Routes>
-    </HashRouter>
-  </StrictMode>
+    </Container>
+  </HashRouter>
 )
