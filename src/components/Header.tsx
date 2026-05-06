@@ -1,19 +1,29 @@
-import '../App.css'
-import { Link } from 'react-router';
-import Button from '@mui/material/Button'
-import ButtonGroup from '@mui/material/ButtonGroup'
+import { Link as RouterLink } from 'react-router';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 export default function Header() {
   return (
-    <>    
-    <h1>Hello, React!</h1>
-    <nav className="m-4">
-      <ButtonGroup>
-        <Button><Link to='/'>Home</Link></Button>
-        <Button><Link to='/game'>Game</Link></Button>
-        <Button><Link to='/quotes'>Quotes</Link></Button>
-      </ButtonGroup>
-    </nav>
-    </>
-  )
+    <header className="mb-6 text-center">
+      <h1 className="mb-4 text-2xl font-bold">
+        Hello, React!
+      </h1>
+
+      <nav className="flex justify-center">
+        <ButtonGroup sx={{ boxShadow: 2 }}>
+          <Button component={RouterLink} to="/">
+            Home
+          </Button>
+
+          <Button component={RouterLink} to="/game">
+            Game
+          </Button>
+
+          <Button component={RouterLink} to="/quotes">
+            Quotes
+          </Button>
+        </ButtonGroup>
+      </nav>
+    </header>
+  );
 }
