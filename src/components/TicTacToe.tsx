@@ -1,116 +1,133 @@
-import '../App.css'
+import '../App.css';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import { Box, Typography, Paper } from '@mui/material';
 
 type SquareValue = "X" | "O" | null;
+
 type SquareProps = {
   value: SquareValue;
   onSquareClick: () => void;
-}
+};
 
 function Square({ value, onSquareClick }: SquareProps) {
-
-  return ( 
-    <Grid className="" size={{ xs: 4, md: 4, lg: 4 }}>
-      <Button variant="contained"
-        className="square m-1"
+  return (
+    <Grid size={{ xs: 4 }}>
+      <Button
+        variant="contained"
         onClick={onSquareClick}
         color="secondary"
-        sx={{height: '45px'}}
+        sx={{
+          width: "100%",
+          height: 60,
+          fontSize: "1.2rem",
+        }}
       >
         {value}
       </Button>
     </Grid>
   );
 }
+
 export default function Game() {
-  const [history, setHistory] = useState<SquareValue[][]>([Array(9).fill(null)]);
+  const [history, setHistory] = useState<SquareValue[][]>([
+    Array(9).fill(null),
+  ]);
   const [currentMove, setCurrentMove] = useState<number>(0);
-  const xIsNext: boolean = currentMove % 2 === 0;
-  const currentSquares: SquareValue[] = history[currentMove];
+
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
 
   function handlePlay(nextSquares: SquareValue[]) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    const nextHistory = [
+      ...history.slice(0, currentMove + 1),
+      nextSquares,
+    ];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(nextMove: number) {
-    setCurrentMove(nextMove);
+  function jumpTo(move: number) {
+    setCurrentMove(move);
   }
 
-  const moves = history.map((squares, move) => {
-    let description;
-    if (move > 0) {
-      description = 'Go to move #' + move;
-    } else {
-      description = 'Go to game start';
-    }
-		return (
-      <li className='p-1' key={move}>
-        <Button variant='contained' onClick={() => jumpTo(move)}>{description}</Button>
-      </li>
-		);
+  const moves = history.map((_, move) => {
+    const description =
+      move > 0 ? `Go to move #${move}` : "Game start";
+
+    return (
+      <Button key={move} size="small" variant='contained' onClick={() => jumpTo(move)}>
+        {description}
+      </Button>
+    );
   });
 
   return (
-    <div className="game">
-      <Grid container sx={{justifyContent: 'center'}} className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-      </Grid>
-      <div className="game-info">
-        <ol>{moves}</ol>
-      </div>
-    </div>
+    <Box className="flex flex-col items-center gap-6 mt-4">
+      
+      {/* Game Board */}
+      <Paper sx={{ p: 3 }}>
+        <Board
+          xIsNext={xIsNext}
+          squares={currentSquares}
+          onPlay={handlePlay}
+        />
+      </Paper>
+
+      {/* Move History */}
+      <Box className="flex flex-col items-center gap-2">
+        {moves}
+      </Box>
+
+    </Box>
   );
 }
 
 type BoardProps = {
   xIsNext: boolean;
   squares: SquareValue[];
-  onPlay: (nextSquares: SquareValue[]) => void; // Does take an argument
-}
+  onPlay: (nextSquares: SquareValue[]) => void;
+};
 
 function Board({ xIsNext, squares, onPlay }: BoardProps) {
   function handleClick(i: number) {
-    if (squares[i] || calculateWinner(squares)) {
-      return;
-    }
+    if (squares[i] || calculateWinner(squares)) return;
+
     const nextSquares = squares.slice();
-    if (xIsNext) {
-      nextSquares[i] = "X";
-    } else {
-      nextSquares[i] = "O";
-    }
+    nextSquares[i] = xIsNext ? "X" : "O";
     onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
+
   let status;
   if (winner) {
     status = "Winner: " + winner;
-  } else if (squares.every(square => square !== null)) {
-    status = "No winner, draw!"
+  } else if (squares.every((square) => square !== null)) {
+    status = "Draw!";
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
 
   return (
-    <>
-      <Grid size={{ xs: 12, md: 12, lg: 12 }} className="status">{status}</Grid>
-      <Grid size={{ xs: 12, md: 12, lg: 12 }} sx={{justifyContent: 'center'}} container className="board">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+    <Box className="flex flex-col items-center gap-4">
+      
+      {/* Status */}
+      <Typography variant="h6">{status}</Typography>
+
+      {/* Board */}
+      <Grid container spacing={1} sx={{ width: 200 }}>
+        {squares.map((value, i) => (
+          <Square
+            key={i}
+            value={value}
+            onSquareClick={() => handleClick(i)}
+          />
+        ))}
       </Grid>
-    </>
+
+    </Box>
   );
 }
 
@@ -123,13 +140,18 @@ function calculateWinner(squares: SquareValue[]) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+
+  for (let [a, b, c] of lines) {
+    if (
+      squares[a] &&
+      squares[a] === squares[b] &&
+      squares[a] === squares[c]
+    ) {
       return squares[a];
     }
   }
+
   return null;
 }

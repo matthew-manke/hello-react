@@ -43,12 +43,12 @@ export default function Quotes() {
       <Grid container spacing={4}>
         
         {/* Quotes list */}
-        <Grid size={{ xs: 12}}>
+        <Grid size={{ xs: 12 }}>
           <List listItems={filteredQuotes} />
         </Grid>
 
         {/* Controls */}
-        <Grid size={{ xs: 12}}>
+        <Grid size={{ xs: 12 }}>
           <Card>
             <div className="flex flex-col gap-4">
               
