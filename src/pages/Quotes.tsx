@@ -7,6 +7,7 @@ import Card from '../components/Card';
 import List from '../components/List';
 import QuoteInput from '../components/QuoteInput';
 import SearchInput from '../components/SearchInput';
+import PageLayout from '../layouts/PageLayout';
 
 export default function Quotes() {
   const DEFAULT_QUOTES = [
@@ -39,7 +40,7 @@ export default function Quotes() {
   const filteredQuotes = filterQuotes(quotes, searchTerm);
 
   return (
-    <Box sx={{ mt: 4 }}>
+    <PageLayout>
       <Grid container spacing={4}>
         
         {/* Quotes list */}
@@ -67,6 +68,6 @@ export default function Quotes() {
         </Grid>
 
       </Grid>
-    </Box>
+    </PageLayout>
   );
 }
