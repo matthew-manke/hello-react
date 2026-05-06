@@ -6,6 +6,7 @@ import Index from './pages/Index'
 import Game from './pages/Game'
 import Quotes from './pages/Quotes';
 import Container from '@mui/material/Container';
+import Api from './pages/Api';
 
 createRoot(document.getElementById('root')!).render(
   <HashRouter>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<Index />} />
         <Route path="/game" element={<Game />} />
         <Route path="/quotes" element={<Quotes />} />
+        <Route path="/api" element={<Api />} />
       </Routes>
     </Container>
   </HashRouter>

@@ -41,6 +41,10 @@ export default function Header() {
           <Button component={RouterLink} to="/quotes">
             Quotes
           </Button>
+
+          <Button component={RouterLink} to="/api">
+            Api
+          </Button>
         </ButtonGroup>
       </Box>
     </Box>
