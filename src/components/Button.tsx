@@ -1,16 +1,23 @@
-import Button from '@mui/material/Button'
+import MuiButton from '@mui/material/Button';
 
 type ButtonProps = {
-  call_to_action: string;
-  action: () => void;
+  children: React.ReactNode;
+  onClick: () => void;
+  variant?: 'contained' | 'outlined' | 'text';
 };
 
-function ButtonInternal({ call_to_action = "Click Me!", action }: ButtonProps) {
+export default function Button({
+  children,
+  onClick,
+  variant = 'contained',
+}: ButtonProps) {
   return (
-    <Button variant='contained' onClick={action}>
-      { call_to_action }
-    </Button>
-  )
+    <MuiButton
+      variant={variant}
+      onClick={onClick}
+      sx={{ minWidth: 120 }}
+    >
+      {children}
+    </MuiButton>
+  );
 }
-
-export default ButtonInternal
