@@ -1,16 +1,35 @@
 import { Link as RouterLink } from 'react-router';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import { Box, Typography, Button, ButtonGroup } from '@mui/material';
 
 export default function Header() {
   return (
-    <header className="mb-6 text-center">
-      <h1 className="mb-4 text-2xl font-bold">
-        Hello, React!
-      </h1>
+    <Box
+      component="header"
+      sx={{
+        borderBottom: '1px solid',
+        borderColor: 'divider',
+        mb: 4,
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: 800,
+          margin: '0 auto',
+          px: 2,
+          py: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+        }}
+      >
+        {/* Title */}
+        <Typography variant="h5" sx={{ fontWeight: 700 }}>
+          Hello, React!
+        </Typography>
 
-      <nav className="flex justify-center">
-        <ButtonGroup sx={{ boxShadow: 2 }}>
+        {/* Navigation */}
+        <ButtonGroup variant="contained">
           <Button component={RouterLink} to="/">
             Home
           </Button>
@@ -23,7 +42,7 @@ export default function Header() {
             Quotes
           </Button>
         </ButtonGroup>
-      </nav>
-    </header>
+      </Box>
+    </Box>
   );
 }
