@@ -7,13 +7,7 @@ type PageLayoutProps = {
 export default function PageLayout({ children }: PageLayoutProps) {
   return (
     <Box
-      className="flex flex-col items-center gap-6"
-      sx={{
-        mt: 4,
-        px: 2,
-        maxWidth: 800,
-        margin: '0 auto',
-      }}
+      className="flex flex-col items-center gap-6 mt-8 px-4 max-w-[800px] mx-auto"
     >
       {children}
     </Box>

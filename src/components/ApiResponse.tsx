@@ -9,7 +9,7 @@ export default function ApiResponse({ apiPromise }: ApiResponseProps) {
   const res = use(apiPromise);
 
   return (
-    <Paper sx={{ p: 3, width: '100%', maxWidth: 600 }}>
+    <Paper className="p-6 w-full max-w-[600px]">
       <Box className="flex flex-col gap-4">
 
         <Typography variant="h6">
@@ -22,15 +22,11 @@ export default function ApiResponse({ apiPromise }: ApiResponseProps) {
 
         <Box
           component="pre"
+          className="p-4 rounded-lg overflow-x-auto whitespace-pre-wrap text-[0.85rem]"
           sx={{
             backgroundColor: '#0d1117',
             color: '#58a6ff',
             fontFamily: 'monospace',
-            p: 2,
-            borderRadius: 2,
-            overflowX: 'auto',
-            whiteSpace: 'pre-wrap',
-            fontSize: '0.85rem',
           }}
         >
           {typeof res.data === 'string'

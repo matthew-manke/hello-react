@@ -64,10 +64,10 @@ export default function Game() {
   });
 
   return (
-    <Box className="flex flex-col items-center gap-6 mt-4">
+    <Box className="flex flex-col items-center gap-6 mt-8">
       
       {/* Game Board */}
-      <Paper sx={{ p: 3 }}>
+      <Paper className="p-6">
         <Board
           xIsNext={xIsNext}
           squares={currentSquares}

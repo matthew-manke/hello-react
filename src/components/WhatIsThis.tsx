@@ -7,13 +7,11 @@ import Link from '@mui/material/Link';
 export default function WhatIsThis() {
   return (
     <List
+      className="max-w-[700px] mx-auto p-4"
       sx={{
-        maxWidth: 700,
-        margin: '0 auto',
         bgcolor: 'background.paper',
         borderRadius: 2,
         boxShadow: 2,
-        p: 2,
       }}
       aria-labelledby="what-is-this-subheader"
       subheader={
@@ -30,11 +28,11 @@ export default function WhatIsThis() {
         </ListSubheader>
       }
     >
-      <ListItem sx={{ py: 1.5 }}>
+      <ListItem className="py-3">
         <ListItemText primary="This is a small React app that contains a handful of components (Buttons, Cards, Lists)." />
       </ListItem>
 
-      <ListItem sx={{ py: 1.5 }}>
+      <ListItem className="py-3">
         <ListItemText
           primary={
             <>
@@ -56,11 +54,11 @@ export default function WhatIsThis() {
         />
       </ListItem>
 
-      <ListItem sx={{ py: 1.5 }}>
+      <ListItem className="py-3">
         <ListItemText primary="The app initially used React with .jsx files and was later migrated to TypeScript, with components now written in .tsx." />
       </ListItem>
 
-      <ListItem sx={{ py: 1.5 }}>
+      <ListItem className="py-3">
         <ListItemText primary="This app uses React Router to present multiple pages." />
       </ListItem>
     </List>
