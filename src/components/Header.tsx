@@ -34,15 +34,15 @@ export default function Header() {
             Home
           </Button>
 
-          <Button component={RouterLink} to="/game">
+          <Button component={RouterLink} to="demo/game">
             Game
           </Button>
 
-          <Button component={RouterLink} to="/quotes">
+          <Button component={RouterLink} to="demo/quotes">
             Quotes
           </Button>
 
-          <Button component={RouterLink} to="/api">
+          <Button component={RouterLink} to="demo/api">
             Api
           </Button>
         </ButtonGroup>
