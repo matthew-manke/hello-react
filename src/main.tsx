@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import { HashRouter, Routes, Route, Outlet } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 import './index.css'
 import Header from './components/Header';
 import Index from './pages/Index'
@@ -10,7 +10,7 @@ import Api from './pages/Api';
 import NotFound from './pages/NotFound';
 
 createRoot(document.getElementById('root')!).render(
-  <HashRouter>
+  <BrowserRouter basename="/hello-react">
     <Header />
     <Container sx={{ mt: 4 }}>
       <Routes>
@@ -24,5 +24,5 @@ createRoot(document.getElementById('root')!).render(
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Container>
-  </HashRouter>
+  </BrowserRouter>
 )
