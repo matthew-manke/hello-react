@@ -1,11 +1,12 @@
+import { use } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 
 type ApiResponseProps = {
-  resource: any;
+  apiPromise: Promise<any>;
 };
 
-export default function ApiResponse({ resource }: ApiResponseProps) {
-  const res = resource.read();
+export default function ApiResponse({ apiPromise }: ApiResponseProps) {
+  const res = use(apiPromise);
 
   return (
     <Paper sx={{ p: 3, width: '100%', maxWidth: 600 }}>

@@ -29,8 +29,8 @@ const API_OPTIONS: ApiOption[] = [
 export default function ApiPage() {
   const [selectedUrl, setSelectedUrl] = useState(API_OPTIONS[0].url);
 
-  const resource = useMemo(() => {
-    return createResource(fetchApi(selectedUrl));
+  const apiPromise = useMemo(() => {
+    return fetchApi(selectedUrl);
   }, [selectedUrl]);
 
   return (
@@ -55,7 +55,7 @@ export default function ApiPage() {
       <ErrorBoundary fallback={<p>Error occurred</p>}>       
         <Paper sx={{ p: 3, width: '100%', maxWidth: 600, minHeight: 200 }}>
           <Suspense fallback={<Skeleton height={150} />}>
-            <ApiResponse resource={resource} />
+            <ApiResponse apiPromise={apiPromise} />
           </Suspense>
         </Paper>
       </ErrorBoundary>
