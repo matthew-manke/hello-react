@@ -1,8 +1,10 @@
 import '../App.css';
-import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { Box, Typography, Paper } from '@mui/material';
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../store/store";
+import { playMove, jumpToMove } from "../store/game/gameSlice";
 import { calculateWinner, type SquareValue } from '../utils/gameLogic';
 
 type SquareProps = {
@@ -30,26 +32,22 @@ function Square({ value, onSquareClick }: SquareProps) {
 }
 
 export default function Game() {
-  const [history, setHistory] = useState<SquareValue[][]>([
-    Array(9).fill(null),
-  ]);
-  const [currentMove, setCurrentMove] = useState<number>(0);
+  const dispatch = useDispatch();
+
+  const history = useSelector((state: RootState) => state.game.history);
+  const currentMove = useSelector((state: RootState) => state.game.currentMove);
 
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
   function handlePlay(nextSquares: SquareValue[]) {
-    const nextHistory = [
-      ...history.slice(0, currentMove + 1),
-      nextSquares,
-    ];
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
+    dispatch(playMove(nextSquares));
   }
 
   function jumpTo(move: number) {
-    setCurrentMove(move);
+    dispatch(jumpToMove(move));
   }
+
 
   const moves = history.map((_, move) => {
     const description =
