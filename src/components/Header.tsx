@@ -1,8 +1,55 @@
-import { Link as RouterLink } from 'react-router';
-import { Box, Typography, Button, ButtonGroup } from '@mui/material';
+import * as React from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router';
+import { Box, Typography, Button, ButtonGroup, Menu, MenuItem } from '@mui/material';
 
 export default function Header() {
+  const id = React.useId();
+  const buttonId = `${id}-button`;
+  const menuId = `${id}-menu`;
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const navigate = useNavigate();
+  const showMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    navigate('/demo');
+  }
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
+    <>
+    <ButtonGroup>
+      <Button component={RouterLink} to="/">HOME</Button>
+      <Button 
+        id={buttonId}
+        aria-controls={open ? menuId : undefined}
+        aria-haspopup="true"
+        aria-expanded={open}
+        onMouseEnter={showMenu}
+        onClick={handleClick}
+      >
+        Demos
+      </Button>
+      <Menu
+        id={menuId}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        slotProps={{
+          list: {
+            'aria-labelledby': buttonId,
+          },
+        }} 
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+    </ButtonGroup>
     <Box
       component="header"
       sx={{
@@ -48,5 +95,6 @@ export default function Header() {
         </ButtonGroup>
       </Box>
     </Box>
+    </>
   );
 }
