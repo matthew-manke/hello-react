@@ -1,12 +1,16 @@
-import { use } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Box, Typography, Paper } from '@mui/material';
+import { fetchApi } from '../api/fetchApi';
 
 type ApiResponseProps = {
-  apiPromise: Promise<any>;
+  url: string;
 };
 
-export default function ApiResponse({ apiPromise }: ApiResponseProps) {
-  const res = use(apiPromise);
+export default function ApiResponse({ url }: ApiResponseProps) {
+  const { data: res } = useSuspenseQuery({
+    queryKey: ['api', url],
+    queryFn: () => fetchApi(url),
+  });
 
   return (
     <Paper className="p-6 w-full max-w-[600px]">

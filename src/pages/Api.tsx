@@ -1,4 +1,4 @@
-import { useState, Suspense, useMemo } from 'react';
+import { useState, Suspense } from 'react';
 import {
   MenuItem,
   Select,
@@ -7,7 +7,6 @@ import {
 } from '@mui/material';
 
 import PageLayout from '../layouts/PageLayout';
-import { fetchApi } from '../api/fetchApi';
 import ApiResponse from '../components/ApiResponse';
 import ErrorBoundary from '../components/ErrorBoundary';
 
@@ -25,10 +24,6 @@ const API_OPTIONS: ApiOption[] = [
 
 export default function ApiPage() {
   const [selectedUrl, setSelectedUrl] = useState(API_OPTIONS[0].url);
-
-  const apiPromise = useMemo(() => {
-    return fetchApi(selectedUrl);
-  }, [selectedUrl]);
 
   return (
     <PageLayout>
@@ -52,7 +47,7 @@ export default function ApiPage() {
       <ErrorBoundary fallback={<p>Error occurred</p>}>       
         <Paper sx={{ p: 3, width: '100%', maxWidth: 600, minHeight: 200 }}>
           <Suspense fallback={<Skeleton height={150} />}>
-            <ApiResponse apiPromise={apiPromise} />
+            <ApiResponse url={selectedUrl} />
           </Suspense>
         </Paper>
       </ErrorBoundary>

@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { HashRouter, Routes, Route } from "react-router";
 import { Provider } from 'react-redux';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { store } from './store/store';
 import './index.css';
 import Header from './components/Header';
@@ -11,22 +12,26 @@ import Container from '@mui/material/Container';
 import Api from './pages/Api';
 import NotFound from './pages/NotFound';
 
+const queryClient = new QueryClient();
+
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-    <HashRouter>
-      <Header />
-      <Container sx={{ mt: 4 }}>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="demo">
-            <Route index element={<><h1>A demo</h1><p>With nested routes!</p></>} />
-            <Route path="game" element={<Game />} />
-            <Route path="quotes" element={<Quotes />} />
-            <Route path="api" element={<Api />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Container>
-    </HashRouter>
+    <QueryClientProvider client={queryClient}>
+      <HashRouter>
+        <Header />
+        <Container sx={{ mt: 4 }}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="demo">
+              <Route index element={<><h1>A demo</h1><p>With nested routes!</p></>} />
+              <Route path="game" element={<Game />} />
+              <Route path="quotes" element={<Quotes />} />
+              <Route path="api" element={<Api />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Container>
+      </HashRouter>
+    </QueryClientProvider>
   </Provider>
 )
