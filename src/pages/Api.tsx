@@ -1,15 +1,12 @@
 import { useState, Suspense, useMemo } from 'react';
 import {
-  Box,
   MenuItem,
   Select,
-  Typography,
   Paper,
   Skeleton
 } from '@mui/material';
 
 import PageLayout from '../layouts/PageLayout';
-import { createResource } from '../utils/createResource';
 import { fetchApi } from '../api/fetchApi';
 import ApiResponse from '../components/ApiResponse';
 import ErrorBoundary from '../components/ErrorBoundary';
